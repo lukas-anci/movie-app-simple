@@ -6,13 +6,12 @@ class MovieTable extends Component {
     movies: getMovies(),
   };
 
-  countMovies() {
-    const count = this.state.movies.length;
-    return count;
-  }
-
-  handleDelete = () => {
-    console.log('you are trying to delete');
+  handleDelete = (movieId) => {
+    console.log('you are trying to delete', movieId);
+    const moviesWithoutTheOneWeDeleted = this.state.movies.filter(
+      (m) => m._id !== movieId
+    );
+    this.setState({ movies: moviesWithoutTheOneWeDeleted });
   };
 
   renderTableData() {
@@ -26,7 +25,7 @@ class MovieTable extends Component {
           <td>
             {' '}
             <button
-              onClick={this.handleDelete}
+              onClick={() => this.handleDelete(m._id)}
               type="button"
               className="btn btn-danger"
             >
@@ -39,11 +38,18 @@ class MovieTable extends Component {
   }
 
   render() {
-    console.log(this.renderTableData());
+    const { movies: mv } = this.state;
+    if (mv.length === 0)
+      return (
+        <div className="alert alert-warning">
+          There are no movies at the moment
+        </div>
+      );
+
     return (
-      <div>
+      <div className="container">
         <h3>Please see our movies</h3>
-        <p>Showing {this.countMovies()} movies in our stores</p>
+        <p>Showing {mv.length} movies in our stores</p>
 
         <table className="table table-striped">
           <thead>
