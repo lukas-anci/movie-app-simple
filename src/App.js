@@ -1,10 +1,11 @@
 import './App.css';
 import MovieTable from './components/movieTable';
+import Header from './components/header';
 
 function App() {
   return (
     <div className="App">
-      <h2>yes</h2>
+      <Header />
       <MovieTable />
     </div>
   );
