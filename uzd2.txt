@@ -1,0 +1,3 @@
+1. susikurt movie row komponenta
+2. panaudoti ji sukuriant eilutes MovieRow componente
+3. padaryti kad veiktu delete mygtukas is movieRow

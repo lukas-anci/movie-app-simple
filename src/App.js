@@ -8,6 +8,7 @@ function App() {
     <div className="App  mt-3">
       <Header />
       <MovieTable />
+
       <Footer />
     </div>
   );

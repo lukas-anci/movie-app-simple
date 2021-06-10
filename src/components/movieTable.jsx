@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getMovies } from '../services/fakeMovieService';
+import MovieRow from './movieRow';
 
 class MovieTable extends Component {
   state = {
@@ -13,29 +14,6 @@ class MovieTable extends Component {
     );
     this.setState({ movies: moviesWithoutTheOneWeDeleted });
   };
-
-  renderTableData() {
-    return this.state.movies.map((m) => {
-      return (
-        <tr key={m._id}>
-          <td>{m.title}</td>
-          <td>{m.genre.name}</td>
-          <td>{m.numberInStock}</td>
-          <td>{m.dailyRentalRate}</td>
-          <td>
-            {' '}
-            <button
-              onClick={() => this.handleDelete(m._id)}
-              type="button"
-              className="btn btn-danger"
-            >
-              Delete
-            </button>{' '}
-          </td>
-        </tr>
-      );
-    });
-  }
 
   render() {
     const { movies: mv } = this.state;
@@ -60,7 +38,15 @@ class MovieTable extends Component {
               <th scope="col">Daily Rental Rate</th>
             </tr>
           </thead>
-          <tbody>{this.renderTableData()}</tbody>
+          <tbody>
+            {this.state.movies.map((movie) => (
+              <MovieRow
+                key={movie._id}
+                movie={movie}
+                onDelete={() => this.handleDelete(movie._id)}
+              />
+            ))}
+          </tbody>
         </table>
       </div>
     );
@@ -83,3 +69,26 @@ class MovieTable extends Component {
 // prisideti dar viena stulpeli ir jame turetu buti delete mygtukas
 
 export default MovieTable;
+
+//   renderTableData() {
+//     return this.state.movies.map((m) => {
+//       return (
+//         <tr key={m._id}>
+//           <td>{m.title}</td>
+//           <td>{m.genre.name}</td>
+//           <td>{m.numberInStock}</td>
+//           <td>{m.dailyRentalRate}</td>
+//           <td>
+//             {' '}
+//             <button
+//               onClick={() => this.handleDelete(m._id)}
+//               type="button"
+//               className="btn btn-danger"
+//             >
+//               Delete
+//             </button>{' '}
+//           </td>
+//         </tr>
+//       );
+//     });
+//   }
