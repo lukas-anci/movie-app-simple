@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
+// add image
+import heroImg from './hero.jpg';
+import './style.css';
 class AppHeader extends Component {
   state = {};
   render() {
-    return <h2>I am header</h2>;
+    return (
+      <header>
+        <img className="hero" src={heroImg} alt="ocean" />
+      </header>
+    );
   }
 }
 
