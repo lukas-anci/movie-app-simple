@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import './style.css';
 class AppList extends Component {
   state = {};
   render() {
-    return <h2>I am a list</h2>;
+    return (
+      <ul className="todo-list">
+        <li>one</li>
+      </ul>
+    );
   }
 }
 
