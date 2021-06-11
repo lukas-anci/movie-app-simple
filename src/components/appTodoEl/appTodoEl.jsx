@@ -4,10 +4,26 @@ import './style.css';
 class AppTodoEl extends Component {
   // padaryti kad ikonele butu priklausoma nuo isDone savybes
   // fa-check-circle -done fa-circle-thin - kai ne done
-  state = {};
+  state = {
+    editTitle: this.props.singleTodo.title,
+  };
+
+  handleChange = (event) => {
+    this.setState({ editTitle: event.target.value });
+  };
 
   render() {
-    const { title, isDone, id } = this.props.singleTodo;
+    const { title, isDone, id, isEditOn } = this.props.singleTodo;
+
+    const spanOrTodo = isEditOn ? (
+      <input
+        type="text"
+        value={this.state.editTitle}
+        onChange={this.handleChange}
+      />
+    ) : (
+      <span className={isDone ? 'doneTitle' : ''}>{title}</span>
+    );
 
     return (
       <li className="app-todo-el">
@@ -15,7 +31,7 @@ class AppTodoEl extends Component {
           className={this.setCheckClasses(isDone)}
           onClick={() => this.props.onDoneUndone(id)}
         ></i>
-        <span className={isDone ? 'doneTitle' : ''}>{title}</span>
+        {spanOrTodo}
         <i className="fa fa-pencil"></i>
         <i onClick={() => this.props.onDelete(id)} className="fa fa-trash"></i>
       </li>

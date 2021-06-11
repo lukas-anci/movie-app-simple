@@ -8,11 +8,12 @@ import './app.css';
 class App extends Component {
   state = {
     todos: [
-      { id: 1, isDone: true, title: 'Buy House' },
+      { id: 1, isDone: true, title: 'Buy House', isEditOn: true },
       { id: 2, isDone: true, title: 'Buy TV' },
       { id: 3, isDone: false, title: 'Go to Park' },
       { id: 4, isDone: false, title: 'Learn React' },
     ],
+    currentId: 4,
   };
 
   handleDoneUndone = (id) => {
@@ -30,9 +31,16 @@ class App extends Component {
     const removeDelete = this.state.todos.filter((e) => e.id !== id);
     this.setState({ todos: removeDelete });
   };
-  onSubmit = (e) => {
-    e.preventDefault();
-    console.log('press');
+  handleAddTodo = (todoTitle) => {
+    console.log('add new todo', todoTitle);
+    const newTodo = {
+      title: todoTitle,
+      id: this.state.currentId,
+      isDone: false,
+    };
+    this.setState({
+      todos: [...this.state.todos, newTodo],
+    });
   };
 
   render() {
@@ -40,13 +48,12 @@ class App extends Component {
       <div className="App">
         <AppHeader />
         <AppList
-          onSubmit={this.onSubmit}
           onDoneUndone={this.handleDoneUndone}
           onDelete={this.handleDelete}
           todos={this.state.todos}
         />
 
-        <AppAddTodo />
+        <AppAddTodo onAdd={this.handleAddTodo} />
       </div>
     );
   }
