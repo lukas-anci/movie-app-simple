@@ -8,6 +8,7 @@ class AppHeader extends Component {
     return (
       <header>
         <img className="hero" src={heroImg} alt="ocean" />
+        <p className="hero-date">{new Date().toLocaleDateString()}</p>
       </header>
     );
   }
