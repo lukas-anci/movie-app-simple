@@ -12,7 +12,7 @@ class AppTodoEl extends Component {
     return (
       <li className="app-todo-el">
         <i className={this.setCheckClasses(isDone)}></i>
-        <span>{title}</span>
+        <span className={isDone ? 'doneTitle' : ''}>{title}</span>
         <i className="fa fa-pencil"></i>
         <i className="fa fa-trash"></i>
       </li>
