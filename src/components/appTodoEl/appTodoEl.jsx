@@ -7,14 +7,17 @@ class AppTodoEl extends Component {
   state = {};
 
   render() {
-    const { title, isDone } = this.props.singleTodo;
+    const { title, isDone, id } = this.props.singleTodo;
 
     return (
       <li className="app-todo-el">
-        <i className={this.setCheckClasses(isDone)}></i>
+        <i
+          className={this.setCheckClasses(isDone)}
+          onClick={() => this.props.onDoneUndone(id)}
+        ></i>
         <span className={isDone ? 'doneTitle' : ''}>{title}</span>
         <i className="fa fa-pencil"></i>
-        <i className="fa fa-trash"></i>
+        <i onClick={() => this.props.onDelete(id)} className="fa fa-trash"></i>
       </li>
     );
   }
@@ -27,3 +30,9 @@ class AppTodoEl extends Component {
 }
 // fa-circle-thin
 export default AppTodoEl;
+
+// {!isEditOn ? (
+//     <span className={isDone ? 'doneTitle' : ''}>{title}</span>
+//   ) : (
+//     <input type="text" />
+//   )}
