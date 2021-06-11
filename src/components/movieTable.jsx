@@ -43,7 +43,7 @@ class MovieTable extends Component {
               <MovieRow
                 key={movie._id}
                 movie={movie}
-                onDelete={() => this.handleDelete(movie._id)}
+                onDelete={this.handleDelete}
               />
             ))}
           </tbody>
