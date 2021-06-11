@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import AppAddTodo from './components/appAddTodo/appAddTodo';
 import AppHeader from './components/appHeader/appHeader';
 import AppList from './components/appList/appList';
+
+// app styles
+import './app.css';
 class App extends Component {
   state = {};
   render() {
