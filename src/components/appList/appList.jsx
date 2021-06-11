@@ -5,7 +5,9 @@ class AppList extends Component {
   render() {
     return (
       <ul className="todo-list">
-        <li>one</li>
+        {this.props.todos.map((t) => (
+          <li key={t.id}>{t.title}</li>
+        ))}
       </ul>
     );
   }
