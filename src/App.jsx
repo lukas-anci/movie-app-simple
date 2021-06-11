@@ -14,11 +14,13 @@ class App extends Component {
       { id: 4, isDone: false, title: 'Learn React' },
     ],
   };
+
   render() {
     return (
       <div className="App">
         <AppHeader />
         <AppList todos={this.state.todos} />
+
         <AppAddTodo />
       </div>
     );
