@@ -21,24 +21,10 @@ class fetchTest extends Component {
 
   handleNewTodo = () => {
     console.log('veikia funkcija');
-    const newTodo = {
-      title: this.state.todoTitle,
-    };
-    fetch('http://localhost:3002/api/todos/new', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newTodo),
-    })
-      .then((resp) => resp.json())
-      .then((ats) => {
-        console.log(ats);
-        this.getTodos();
-        this.setState({ todoTitle: '' });
-      })
-      .catch((err) => console.warn(err));
+    GetSendData.createTodo(this.state.todoTitle, () => {
+      this.getTodos();
+      this.setState({ todoTitle: '' });
+    });
   };
 
   render() {

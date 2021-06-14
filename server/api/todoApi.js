@@ -22,7 +22,6 @@ router.post('/api/todos/new', (req, res) => {
       res.json({ success: true, result: result });
     })
     .catch((err) => res.status(500).json({ success: false, err }));
-  res.json({ success: true, body: req.body });
 });
 
 module.exports = router;
