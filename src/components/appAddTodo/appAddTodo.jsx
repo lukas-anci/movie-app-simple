@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './style.css';
 class AppAddTodo extends Component {
   state = {
     newTodo: '',
@@ -15,7 +16,10 @@ class AppAddTodo extends Component {
   render() {
     return (
       <div className="add-todo-container">
-        <i onClick={this.sendAddTodo} className="fa fa-plus-circle"></i>
+        <i
+          onClick={this.sendAddTodo}
+          className="fa fa-plus-circle add-icon"
+        ></i>
         <input
           onChange={this.handleChange}
           value={this.state.newTodo}

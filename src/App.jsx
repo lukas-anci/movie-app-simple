@@ -13,7 +13,7 @@ class App extends Component {
       { id: 3, isDone: false, title: 'Go to Park', isEditOn: false },
       { id: 4, isDone: false, title: 'Learn React', isEditOn: false },
     ],
-    currentId: 3,
+    currentId: 5,
   };
 
   handleDoneUndone = (id) => {
@@ -34,10 +34,21 @@ class App extends Component {
   handleAddTodo = (todoTitle) => {
     console.log('add new todo', todoTitle);
 
+    // const todoPlusNew = [this.state.todos];
+    // const newTodo = {
+    //   title: todoTitle,
+    //   id: this.state.currentId,
+    //   isDone: false,
+    //   isEditOn: false,
+    // };
+    // todoPlusNew.push(newTodo)
+    // this.setState({todos: todosPlusNew, currentId: this.state.currentId+1})
+
     const newTodo = {
       title: todoTitle,
       id: this.state.currentId,
       isDone: false,
+      isEditOn: false,
     };
     this.setState({
       todos: [...this.state.todos, newTodo],
