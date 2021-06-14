@@ -16,6 +16,13 @@ class App extends Component {
     currentId: 5,
   };
 
+  componentDidMount() {
+    const todos = [...this.state.todos];
+    // isrikiuoti pagal isDone
+    todos.sort((a, b) => a.isDone - b.isDone);
+    this.setState({ todos });
+  }
+
   handleDoneUndone = (id) => {
     // pasidaryti todos kopija
     const todos = [...this.state.todos];
@@ -23,6 +30,9 @@ class App extends Component {
     const toggle = todos.find((e) => e.id === id);
 
     toggle.isDone = !toggle.isDone;
+
+    // isrikiuoti pagal isDone
+    todos.sort((a, b) => a.isDone - b.isDone);
 
     this.setState({ todos });
   };
@@ -34,26 +44,26 @@ class App extends Component {
   handleAddTodo = (todoTitle) => {
     console.log('add new todo', todoTitle);
 
-    // const todoPlusNew = [this.state.todos];
-    // const newTodo = {
-    //   title: todoTitle,
-    //   id: this.state.currentId,
-    //   isDone: false,
-    //   isEditOn: false,
-    // };
-    // todoPlusNew.push(newTodo)
-    // this.setState({todos: todosPlusNew, currentId: this.state.currentId+1})
-
+    const todoPlusNew = [...this.state.todos];
     const newTodo = {
       title: todoTitle,
       id: this.state.currentId,
       isDone: false,
       isEditOn: false,
     };
-    this.setState({
-      todos: [...this.state.todos, newTodo],
-      currentId: this.state.currentId + 1,
-    });
+    todoPlusNew.unshift(newTodo);
+    this.setState({ todos: todoPlusNew, currentId: this.state.currentId + 1 });
+
+    // const newTodo = {
+    //   title: todoTitle,
+    //   id: this.state.currentId,
+    //   isDone: false,
+    //   isEditOn: false,
+    // };
+    // this.setState({
+    //   todos: [...this.state.todos, newTodo],
+    //   currentId: this.state.currentId + 1,
+    // });
   };
 
   handleEdit = (editId, newTitleVal) => {
