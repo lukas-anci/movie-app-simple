@@ -32,7 +32,10 @@ class AppTodoEl extends Component {
           onClick={() => this.props.onDoneUndone(id)}
         ></i>
         {spanOrTodo}
-        <i onClick={this.props.onEdit} className="fa fa-pencil"></i>
+        <i
+          onClick={() => this.props.onEdit(id, this.state.editTitle)}
+          className="fa fa-pencil"
+        ></i>
         <i onClick={() => this.props.onDelete(id)} className="fa fa-trash"></i>
       </li>
     );
