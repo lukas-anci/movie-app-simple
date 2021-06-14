@@ -4,14 +4,16 @@ import TodoEl from '../appTodoEl/appTodoEl';
 class AppList extends Component {
   state = {};
   render() {
+    const { onDelete, onDoneUndone, onEdit } = this.props;
     return (
       <ul className="todo-list">
         {this.props.todos.map((t) => (
           <TodoEl
-            onDoneUndone={this.props.onDoneUndone}
+            onDoneUndone={onDoneUndone}
             singleTodo={t}
             key={t.id}
-            onDelete={this.props.onDelete}
+            onDelete={onDelete}
+            onEdit={onEdit}
           />
         ))}
       </ul>

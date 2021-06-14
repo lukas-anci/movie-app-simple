@@ -9,11 +9,11 @@ class App extends Component {
   state = {
     todos: [
       { id: 1, isDone: true, title: 'Buy House', isEditOn: true },
-      { id: 2, isDone: true, title: 'Buy TV' },
-      { id: 3, isDone: false, title: 'Go to Park' },
-      { id: 4, isDone: false, title: 'Learn React' },
+      { id: 2, isDone: true, title: 'Buy TV', isEditOn: false },
+      { id: 3, isDone: false, title: 'Go to Park', isEditOn: false },
+      { id: 4, isDone: false, title: 'Learn React', isEditOn: false },
     ],
-    currentId: 4,
+    currentId: 3,
   };
 
   handleDoneUndone = (id) => {
@@ -33,6 +33,7 @@ class App extends Component {
   };
   handleAddTodo = (todoTitle) => {
     console.log('add new todo', todoTitle);
+
     const newTodo = {
       title: todoTitle,
       id: this.state.currentId,
@@ -40,7 +41,12 @@ class App extends Component {
     };
     this.setState({
       todos: [...this.state.todos, newTodo],
+      currentId: this.state.currentId + 1,
     });
+  };
+
+  handleEdit = (editId, newTitleVal) => {
+    console.log('handleEdit', editId, newTitleVal);
   };
 
   render() {
@@ -51,6 +57,7 @@ class App extends Component {
           onDoneUndone={this.handleDoneUndone}
           onDelete={this.handleDelete}
           todos={this.state.todos}
+          onEdit={this.handleEdit}
         />
 
         <AppAddTodo onAdd={this.handleAddTodo} />
