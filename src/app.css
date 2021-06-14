@@ -11,6 +11,11 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: #333;
 }
+input [type='text'] {
+  font-size: 1em;
+  line-height: 1.5;
+  padding: 0.1em;
+}
 
 /* App js */
 
