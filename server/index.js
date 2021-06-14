@@ -3,6 +3,12 @@ const express = require('express');
 const app = express();
 const PORT = 3002;
 
+// middle ware - to get req.body in json
+app.use(express.json());
+
+const todoApi = require('./api/todoApi');
+app.use('/', todoApi);
+
 const mongoose = require('mongoose');
 
 const { mongoDbString } = require('./config/config');
