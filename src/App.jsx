@@ -60,8 +60,14 @@ class App extends Component {
     console.log('handleEdit', editId, newTitleVal);
     const todos = [...this.state.todos];
     const edit = todos.find((e) => e.id === editId);
+
+    // patikrinti ar reikia issaugoti reiksme
+    if (edit.isEditOn) {
+      edit.title = newTitleVal;
+    }
+
     edit.isEditOn = !edit.isEditOn;
-    edit.title = newTitleVal;
+    // edit.title = newTitleVal;
     this.setState({ todos });
   };
 
