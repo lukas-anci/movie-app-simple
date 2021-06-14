@@ -3,6 +3,9 @@ const express = require('express');
 const app = express();
 const PORT = 3002;
 
+const cors = require('cors');
+app.use(cors());
+
 // middle ware - to get req.body in json
 app.use(express.json());
 

@@ -15,6 +15,10 @@ class fetchTest extends Component {
     };
     fetch('http://localhost:3002/api/todos/new', {
       method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(newTodo),
     })
       .then((resp) => resp.json())
