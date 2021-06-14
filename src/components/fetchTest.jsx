@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
+
+import GetSendData from './../service/getSendData';
 class fetchTest extends Component {
   state = {
     todoTitle: '',
+    todos: [],
   };
 
   syncTitle = (event) => {
     this.setState({ todoTitle: event.target.value });
+  };
+
+  componentDidMount() {
+    this.getTodos();
+  }
+
+  getTodos = () => {
+    GetSendData.getAll((data) => this.setState({ todos: data }));
   };
 
   handleNewTodo = () => {
@@ -22,7 +33,11 @@ class fetchTest extends Component {
       body: JSON.stringify(newTodo),
     })
       .then((resp) => resp.json())
-      .then((ats) => console.log(ats))
+      .then((ats) => {
+        console.log(ats);
+        this.getTodos();
+        this.setState({ todoTitle: '' });
+      })
       .catch((err) => console.warn(err));
   };
 
@@ -37,6 +52,11 @@ class fetchTest extends Component {
           placeholder="add new todo"
         />
         <button onClick={this.handleNewTodo}>Save New Todo</button>
+        <ul>
+          {this.state.todos.map((e) => (
+            <li key={e._id}>{e.title}</li>
+          ))}
+        </ul>
       </div>
     );
   }
