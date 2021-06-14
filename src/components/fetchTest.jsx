@@ -8,6 +8,20 @@ class fetchTest extends Component {
     this.setState({ todoTitle: event.target.value });
   };
 
+  handleNewTodo = () => {
+    console.log('veikia funkcija');
+    const newTodo = {
+      title: this.state.todoTitle,
+    };
+    fetch('http://localhost:3002/api/todos/new', {
+      method: 'POST',
+      body: JSON.stringify(newTodo),
+    })
+      .then((resp) => resp.json())
+      .then((ats) => console.log(ats))
+      .catch((err) => console.warn(err));
+  };
+
   render() {
     return (
       <div>
@@ -18,6 +32,7 @@ class fetchTest extends Component {
           type="text"
           placeholder="add new todo"
         />
+        <button onClick={this.handleNewTodo}>Save New Todo</button>
       </div>
     );
   }
