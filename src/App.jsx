@@ -8,7 +8,7 @@ import './app.css';
 class App extends Component {
   state = {
     todos: [
-      { id: 1, isDone: true, title: 'Buy House', isEditOn: true },
+      { id: 1, isDone: true, title: 'Buy House', isEditOn: false },
       { id: 2, isDone: true, title: 'Buy TV', isEditOn: false },
       { id: 3, isDone: false, title: 'Go to Park', isEditOn: false },
       { id: 4, isDone: false, title: 'Learn React', isEditOn: false },
