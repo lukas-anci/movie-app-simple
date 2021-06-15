@@ -25,6 +25,7 @@ class App extends Component {
             <Route path="/about" component={AboutPage}></Route>
             <Route path="/contact" component={ContactsPage}></Route>
             <Route path="/" exact component={HomePage}></Route>
+            <Redirect from="/" to="/todos"></Redirect>
             <Redirect to="/not-found"></Redirect>
           </Switch>
           {/* <Route path="/" exact component={HomePage}></Route> */}
