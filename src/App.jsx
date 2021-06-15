@@ -5,6 +5,7 @@ import AppList from './components/appList/appList';
 
 // app styles
 import './app.css';
+import Navbar from './components/navbar/navbar';
 class App extends Component {
   state = {
     todos: [
@@ -84,6 +85,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Navbar />
         <AppHeader />
         <AppList
           onDoneUndone={this.handleDoneUndone}
