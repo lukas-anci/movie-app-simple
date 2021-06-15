@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router';
+import { Route, Switch, Redirect } from 'react-router';
 import TodoPage from './components/todoPage/todoPage';
 // app styles
 import './app.css';
@@ -8,6 +8,7 @@ import ContactsPage from './components/pages/contact';
 import AboutPage from './components/pages/about';
 import HomePage from './components/pages/home';
 import SingleTodo from './components/pages/singleTodo';
+import NotFound from './components/pages/404';
 class App extends Component {
   state = {};
   render() {
@@ -18,10 +19,13 @@ class App extends Component {
           {/* sutikes pirma atitikusi route jis nebeiesko toliau, svarbi eiles tvarka */}
           <Switch>
             <Route path="/todos/:id" component={SingleTodo}></Route>
+            <Route path="/not-found" component={NotFound}></Route>
+            <Redirect from="/buble" to="/todos"></Redirect>
             <Route path="/todos" component={TodoPage}></Route>
             <Route path="/about" component={AboutPage}></Route>
             <Route path="/contact" component={ContactsPage}></Route>
-            <Route path="/" component={HomePage}></Route>
+            <Route path="/" exact component={HomePage}></Route>
+            <Redirect to="/not-found"></Redirect>
           </Switch>
           {/* <Route path="/" exact component={HomePage}></Route> */}
         </div>
