@@ -1,3 +1,13 @@
 1. npm i react-router-dom
 
 2. ikelti i router i index.js
+
+3. Main component 
+import {Route, Switch} from 'react-router'
+ <Route path="/todos" component={TodoPage}></Route>
+
+ 4. padaryti kad nepersikrautu puslapis
+ import { Link } from 'react-router-dom';
+  <Link className="logo" to="/">
+          ReactApp
+        </Link>
