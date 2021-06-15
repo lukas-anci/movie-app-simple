@@ -3,6 +3,7 @@ import AppAddTodo from '../appAddTodo/appAddTodo';
 import AppHeader from '../appHeader/appHeader';
 import AppList from '../appList/appList';
 import './todo.css';
+import { Link } from 'react-router-dom';
 
 class TodoPage extends Component {
   state = {
@@ -92,6 +93,7 @@ class TodoPage extends Component {
         />
 
         <AppAddTodo onAdd={this.handleAddTodo} />
+        <Link to="/about">Go To About Us Page</Link>
       </div>
     );
   }
