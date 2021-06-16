@@ -13,7 +13,7 @@ class AppTodoEl extends Component {
   };
 
   render() {
-    const { title, isDone, id, isEditOn } = this.props.singleTodo;
+    const { title, isDone, _id: id, isEditOn } = this.props.singleTodo;
 
     const spanOrTodo = isEditOn ? (
       <input

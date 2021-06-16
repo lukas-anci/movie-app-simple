@@ -40,8 +40,11 @@ class TodoPage extends Component {
   };
 
   handleDelete = (id) => {
-    const removeDelete = this.state.todos.filter((e) => e.id !== id);
-    this.setState({ todos: removeDelete });
+    GetSendData.deleteTodo(id, (ats) => {
+      console.log('deletePressed', ats);
+
+      this.getTodos();
+    });
   };
   handleAddTodo = (todoTitle) => {
     console.log('add new todo', todoTitle);
