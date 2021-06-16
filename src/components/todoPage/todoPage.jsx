@@ -5,14 +5,16 @@ import AppList from '../appList/appList';
 import './todo.css';
 import { Link } from 'react-router-dom';
 
+import GetSendData from './../../service/getSendData';
+
 class TodoPage extends Component {
   state = {
-    todos: [
-      { id: 1, isDone: true, title: 'Buy House', isEditOn: false },
-      { id: 2, isDone: true, title: 'Buy TV', isEditOn: false },
-      { id: 3, isDone: false, title: 'Go to Park', isEditOn: false },
-      { id: 4, isDone: false, title: 'Learn React', isEditOn: false },
-    ],
+    todos: [],
+    //   { id: 1, isDone: true, title: 'Buy House', isEditOn: false },
+    //   { id: 2, isDone: true, title: 'Buy TV', isEditOn: false },
+    //   { id: 3, isDone: false, title: 'Go to Park', isEditOn: false },
+    //   { id: 4, isDone: false, title: 'Learn React', isEditOn: false },
+    // ],
     currentId: 5,
   };
 
@@ -20,8 +22,12 @@ class TodoPage extends Component {
     const todos = [...this.state.todos];
     // isrikiuoti pagal isDone
     todos.sort((a, b) => a.isDone - b.isDone);
+    this.getTodos();
     this.setState({ todos });
   }
+  getTodos = () => {
+    GetSendData.getAll((data) => this.setState({ todos: data }));
+  };
 
   handleDoneUndone = (id) => {
     // pasidaryti todos kopija
