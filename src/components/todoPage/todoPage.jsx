@@ -25,18 +25,10 @@ class TodoPage extends Component {
     GetSendData.getAll((data) => this.setState({ todos: data }));
   };
 
-  handleDoneUndone = (id) => {
+  handleDoneUndone = (id, newState) => {
     // pasidaryti todos kopija
-    const todos = [...this.state.todos];
-    // surasti todo kuris paspaude ir pakeiisti jo busena
-    const toggle = todos.find((e) => e.id === id);
-
-    toggle.isDone = !toggle.isDone;
-
-    // isrikiuoti pagal isDone
-    todos.sort((a, b) => a.isDone - b.isDone);
-
-    this.setState({ todos });
+    console.log('change status to', newState);
+    console.log('done undone', id);
   };
 
   handleDelete = (id) => {

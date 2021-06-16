@@ -29,7 +29,7 @@ class AppTodoEl extends Component {
       <li className="app-todo-el">
         <i
           className={this.setCheckClasses(isDone)}
-          onClick={() => this.props.onDoneUndone(id)}
+          onClick={() => this.props.onDoneUndone(id, !isDone)}
         ></i>
         {spanOrTodo}
         {isDone ? (
