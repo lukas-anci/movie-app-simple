@@ -6,12 +6,19 @@ class AppAddTodo extends Component {
   };
 
   handleChange = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     this.setState({ newTodo: event.target.value });
   };
   sendAddTodo = () => {
     this.props.onAdd(this.state.newTodo);
     this.setState({ newTodo: '' });
+  };
+  handleEnter = (e) => {
+    // console.log(e.keyCode); // 13 === enter
+    // if (e.keyCode === 13) this.sendAddTodo();
+
+    // jeiSalygaTrue && vygdomSita
+    e.keyCode === 13 && this.sendAddTodo();
   };
   render() {
     return (
@@ -22,6 +29,7 @@ class AppAddTodo extends Component {
         ></i>
         <input
           onChange={this.handleChange}
+          onKeyUp={this.handleEnter}
           value={this.state.newTodo}
           type="text"
           placeholder="Add new Todo"
