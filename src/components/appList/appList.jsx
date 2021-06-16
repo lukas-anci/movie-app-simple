@@ -11,7 +11,7 @@ class AppList extends Component {
           <TodoEl
             onDoneUndone={onDoneUndone}
             singleTodo={t}
-            key={t.id}
+            key={t._id}
             onDelete={onDelete}
             onEdit={onEdit}
           />

@@ -19,11 +19,7 @@ class TodoPage extends Component {
   };
 
   componentDidMount() {
-    const todos = [...this.state.todos];
-    // isrikiuoti pagal isDone
-    todos.sort((a, b) => a.isDone - b.isDone);
     this.getTodos();
-    this.setState({ todos });
   }
   getTodos = () => {
     GetSendData.getAll((data) => this.setState({ todos: data }));
@@ -49,16 +45,10 @@ class TodoPage extends Component {
   };
   handleAddTodo = (todoTitle) => {
     console.log('add new todo', todoTitle);
-
-    const todoPlusNew = [...this.state.todos];
-    const newTodo = {
-      title: todoTitle,
-      id: this.state.currentId,
-      isDone: false,
-      isEditOn: false,
-    };
-    todoPlusNew.unshift(newTodo);
-    this.setState({ todos: todoPlusNew, currentId: this.state.currentId + 1 });
+    GetSendData.createTodo(todoTitle, () => {
+      this.getTodos();
+      this.setState({ todoTitle: '' });
+    });
 
     // const newTodo = {
     //   title: todoTitle,
