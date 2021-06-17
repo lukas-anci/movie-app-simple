@@ -37,16 +37,20 @@ export default class GetSendData {
     //   })
     //   .catch((err) => console.warn(err));
 
-    const resp = await fetch(GetSendData.todoApiUrl + '/new', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newTodo),
-    });
-    const ats = await resp.json();
-    successCallback(ats);
+    try {
+      const resp = await fetch(GetSendData.todoApiUrl + '/new', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newTodo),
+      });
+      const ats = await resp.json();
+      successCallback(ats);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   static async deleteTodo(idToDelete, successCallback) {

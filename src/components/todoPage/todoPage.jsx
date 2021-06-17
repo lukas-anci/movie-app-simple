@@ -16,6 +16,9 @@ class TodoPage extends Component {
     //   { id: 4, isDone: false, title: 'Learn React', isEditOn: false },
     // ],
     currentId: 5,
+    errors: {
+      addTodo: '',
+    },
   };
 
   componentDidMount() {
@@ -41,8 +44,13 @@ class TodoPage extends Component {
     });
   };
   handleAddTodo = (todoTitle) => {
-    console.log('add new todo', todoTitle);
-    GetSendData.createTodo(todoTitle, () => {
+    // console.log('add new todo', todoTitle);
+    GetSendData.createTodo(todoTitle, (ats) => {
+      console.log(ats);
+      if (!ats.success) {
+        console.log('error in frondend');
+        this.setState({ errors: { addTodo: 'Field cannot be blank' } });
+      }
       this.getTodos();
       this.setState({ todoTitle: '' });
     });
@@ -77,7 +85,10 @@ class TodoPage extends Component {
           onEdit={this.handleEdit}
         />
 
-        <AppAddTodo onAdd={this.handleAddTodo} />
+        <AppAddTodo
+          errors={this.state.errors.addTodo}
+          onAdd={this.handleAddTodo}
+        />
         <Link to="/about">Go To About Us Page</Link>
       </div>
     );
