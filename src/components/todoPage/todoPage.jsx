@@ -27,8 +27,10 @@ class TodoPage extends Component {
 
   handleDoneUndone = (id, newState) => {
     // pasidaryti todos kopija
-    console.log('change status to', newState);
-    console.log('done undone', id);
+
+    GetSendData.doDoneUndone(id, newState, () => {
+      this.getTodos();
+    });
   };
 
   handleDelete = (id) => {
@@ -57,19 +59,11 @@ class TodoPage extends Component {
     // });
   };
 
-  handleEdit = (editId, newTitleVal) => {
-    console.log('handleEdit', editId, newTitleVal);
-    const todos = [...this.state.todos];
-    const edit = todos.find((e) => e.id === editId);
-
-    // patikrinti ar reikia issaugoti reiksme
-    if (edit.isEditOn) {
-      edit.title = newTitleVal;
-    }
-
-    edit.isEditOn = !edit.isEditOn;
-    // edit.title = newTitleVal;
-    this.setState({ todos });
+  handleEdit = (editId, newTitleVal, editStatus) => {
+    // console.log('handleEdit', editId, newTitleVal);
+    GetSendData.doEdit(editId, newTitleVal, editStatus, () => {
+      this.getTodos();
+    });
   };
 
   render() {

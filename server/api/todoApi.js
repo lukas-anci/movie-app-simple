@@ -39,5 +39,25 @@ router.delete('/api/todos/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
+// do un do
+router.patch('/api/todos/:id', async (req, res) => {
+  try {
+    const result = await Todo.findByIdAndUpdate(req.params.id, req.body);
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ success: false, err });
+  }
+});
+// this is edit
+router.patch('/api/todos/edit/:id', async (req, res) => {
+  console.log('patch to edit endpoint', req.params.id, req.body.isEditOn);
+  try {
+    const result = await Todo.findByIdAndUpdate(req.params.id, req.body);
+    res.json({ success: true, result });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;

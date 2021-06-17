@@ -56,4 +56,33 @@ export default class GetSendData {
     const ats = await resp.json();
     successCallback(ats);
   }
+
+  static async doDoneUndone(id, newStatus, successCallBack) {
+    console.log(id, newStatus);
+
+    const resp = await fetch(`${GetSendData.todoApiUrl}/${id}`, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ isDone: newStatus }),
+    });
+    const ats = await resp.json();
+    successCallBack(ats);
+  }
+
+  static async doEdit(id, titleVal, currentEditStatus, successCallBack) {
+    console.log(id, titleVal, currentEditStatus);
+    const resp = await fetch(`${GetSendData.todoApiUrl}/edit/${id}`, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ isEditOn: !currentEditStatus, title: titleVal }),
+    });
+    const data = await resp.json();
+    successCallBack(data);
+  }
 }

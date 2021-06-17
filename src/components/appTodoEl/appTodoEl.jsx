@@ -36,7 +36,9 @@ class AppTodoEl extends Component {
           ''
         ) : (
           <i
-            onClick={() => this.props.onEdit(id, this.state.editTitle)}
+            onClick={() =>
+              this.props.onEdit(id, this.state.editTitle, isEditOn)
+            }
             className="fa fa-pencil"
           ></i>
         )}
