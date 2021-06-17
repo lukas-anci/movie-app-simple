@@ -18,6 +18,7 @@ class TodoPage extends Component {
     currentId: 5,
     errors: {
       addTodo: '',
+      editTodo: '',
     },
   };
 
@@ -67,12 +68,31 @@ class TodoPage extends Component {
     //   currentId: this.state.currentId + 1,
     // });
   };
+  validateInput(val) {
+    const trimed = val.trim();
+    if (trimed.length <= 4) {
+      // error
+      return 'The title is too short';
+    }
+    // no error
+    return false;
+  }
 
   handleEdit = (editId, newTitleVal, editStatus) => {
-    // console.log('handleEdit', editId, newTitleVal);
-    GetSendData.doEdit(editId, newTitleVal, editStatus, () => {
-      this.getTodos();
-    });
+    console.log('handleEdit', editId, newTitleVal, editStatus);
+    if (this.validateInput(newTitleVal)) {
+      console.log('klaida updated');
+      this.setState({
+        errors: {
+          ...this.state.errors,
+          editTodo: this.validateInput(newTitleVal),
+        },
+      });
+    } else {
+      GetSendData.doEdit(editId, newTitleVal, editStatus, () => {
+        this.getTodos();
+      });
+    }
   };
   handleError = (errorObj) => {
     console.log('erorObj', errorObj);
@@ -88,6 +108,7 @@ class TodoPage extends Component {
           onDelete={this.handleDelete}
           todos={this.state.todos}
           onEdit={this.handleEdit}
+          errors={this.state.errors.editTodo}
         />
 
         <AppAddTodo
