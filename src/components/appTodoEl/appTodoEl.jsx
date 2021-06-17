@@ -27,14 +27,15 @@ class AppTodoEl extends Component {
 
     return (
       <li className="app-todo-el">
-        <i
-          className={this.setCheckClasses(isDone)}
-          onClick={() => this.props.onDoneUndone(id, !isDone)}
-        ></i>
+        {!isEditOn && (
+          <i
+            className={this.setCheckClasses(isDone)}
+            onClick={() => this.props.onDoneUndone(id, !isDone)}
+          ></i>
+        )}
+
         {spanOrTodo}
-        {isDone ? (
-          ''
-        ) : (
+        {!isDone && (
           <i
             onClick={() =>
               this.props.onEdit(id, this.state.editTitle, isEditOn)
