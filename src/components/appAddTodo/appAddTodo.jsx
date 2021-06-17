@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import './style.css';
 import { validateTitle } from './../../service/validate';
+import SimpleAlert from '../common/alert/alert';
 class AppAddTodo extends Component {
   state = {
     newTodo: '',
+    onOf: true,
   };
 
   handleChange = (event) => {
@@ -11,6 +13,7 @@ class AppAddTodo extends Component {
     this.setState({ newTodo: event.target.value });
   };
   sendAddTodo = () => {
+    this.setState({ onOf: true });
     const { newTodo } = this.state;
 
     if (validateTitle(newTodo)) {
@@ -27,6 +30,9 @@ class AppAddTodo extends Component {
     // jeiSalygaTrue && vygdomSita
     e.keyCode === 13 && this.sendAddTodo();
   };
+  hideAlert = () => {
+    this.setState({ onOf: false });
+  };
   render() {
     return (
       <div className="add-todo-container">
@@ -42,7 +48,11 @@ class AppAddTodo extends Component {
           type="text"
           placeholder="Add new Todo"
         />
-        {this.props.errors && <p className="error-msg">{this.props.errors}</p>}
+        {this.props.errors && (
+          <SimpleAlert onOf={this.state.onOf} hideAlert={this.hideAlert}>
+            {this.props.errors}
+          </SimpleAlert>
+        )}
       </div>
     );
   }

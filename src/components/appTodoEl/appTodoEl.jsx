@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SimpleAlert from '../common/alert/alert';
 import './style.css';
 
 class AppTodoEl extends Component {
@@ -6,10 +7,19 @@ class AppTodoEl extends Component {
   // fa-check-circle -done fa-circle-thin - kai ne done
   state = {
     editTitle: this.props.singleTodo.title,
+    onOf: true,
   };
 
   handleChange = (event) => {
     this.setState({ editTitle: event.target.value });
+  };
+  hideAlert = () => {
+    this.setState({ onOf: false });
+  };
+  showAlertAndSendProps = () => {
+    const { _id: id, isEditOn } = this.props.singleTodo;
+    this.setState({ onOf: true });
+    this.props.onEdit(id, this.state.editTitle, isEditOn);
   };
 
   render() {
@@ -37,16 +47,13 @@ class AppTodoEl extends Component {
 
         {spanOrTodo}
         {!isDone && (
-          <i
-            onClick={() =>
-              this.props.onEdit(id, this.state.editTitle, isEditOn)
-            }
-            className="fa fa-pencil"
-          ></i>
+          <i onClick={this.showAlertAndSendProps} className="fa fa-pencil"></i>
         )}
 
-        {isEditOn && this.props.errors && (
-          <p className="error-msg">{this.props.errors}</p>
+        {isEditOn && this.props.errors && this.state.onOf && (
+          <SimpleAlert hideAlert={this.hideAlert}>
+            {this.props.errors}
+          </SimpleAlert>
         )}
 
         <i onClick={() => this.props.onDelete(id)} className="fa fa-trash"></i>
