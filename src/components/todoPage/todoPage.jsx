@@ -6,6 +6,7 @@ import './todo.css';
 import { Link } from 'react-router-dom';
 
 import GetSendData from './../../service/getSendData';
+import { validateTitle } from './../../service/validate';
 
 class TodoPage extends Component {
   state = {
@@ -68,24 +69,17 @@ class TodoPage extends Component {
     //   currentId: this.state.currentId + 1,
     // });
   };
-  validateInput(val) {
-    const trimed = val.trim();
-    if (trimed.length <= 4) {
-      // error
-      return 'The title is too short';
-    }
-    // no error
-    return false;
-  }
 
   handleEdit = (editId, newTitleVal, editStatus) => {
     console.log('handleEdit', editId, newTitleVal, editStatus);
-    if (this.validateInput(newTitleVal)) {
+    // delete errrors
+    this.setState({ errors: { ...this.state.errors, editTodo: '' } });
+    if (validateTitle(newTitleVal)) {
       console.log('klaida updated');
       this.setState({
         errors: {
           ...this.state.errors,
-          editTodo: this.validateInput(newTitleVal),
+          editTodo: validateTitle(newTitleVal),
         },
       });
     } else {

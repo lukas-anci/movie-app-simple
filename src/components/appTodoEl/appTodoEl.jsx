@@ -17,6 +17,7 @@ class AppTodoEl extends Component {
 
     const spanOrTodo = isEditOn ? (
       <input
+        className={this.props.errors && 'is-invalid'}
         type="text"
         value={this.state.editTitle}
         onChange={this.handleChange}
@@ -42,6 +43,10 @@ class AppTodoEl extends Component {
             }
             className="fa fa-pencil"
           ></i>
+        )}
+
+        {isEditOn && this.props.errors && (
+          <p className="error-msg">{this.props.errors}</p>
         )}
 
         <i onClick={() => this.props.onDelete(id)} className="fa fa-trash"></i>
