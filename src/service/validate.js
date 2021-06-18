@@ -4,7 +4,7 @@ export function validateTitle(val) {
     // error
     return 'The title is too short';
 
-  //   if (!/^[a-z ,.'-]+$/i.test(trimed)) return 'No numbers please';
+  if (!/^[a-z ,.'-]+$/i.test(trimed)) return 'No numbers';
 
   // no error
   return false;
